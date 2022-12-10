@@ -3,7 +3,6 @@ layout: post
 title:  "Getting started"
 date:   2022-12-10 00:00:01 +0100
 permalink: /getting-started/
-categories: tutorial start
 ---
 
 # Setup
