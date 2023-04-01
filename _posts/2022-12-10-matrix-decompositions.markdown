@@ -74,8 +74,21 @@ $$AP^\top = QR.$$
 It is more numerically stable than the QR decomposition, when the matrix is
 rank-deficient or almost rank deficient but takes longer to compute.
 
-It has the property that the diagonal elements of $R$ are non decreasing (if
+It has the property that the diagonal elements of $R$ are non-increasing (if
 we don't take into account the effects of floating point arithmetic).
+
+# Singular value decomposition
+
+The singular value decomposition decomposes a matrix $A$ into
+matrices $U$, $S$, and $V$, where $U$ and $V$ are orthogonal matrices, and $S$
+is zero except on the main diagonal, such that
+
+$$A = U S V^H.$$
+
+The diagonal elements of $S$ are stored in non-increasing order.
+
+It has a variety of applications, such as computing a pseudoinverse of the
+matrix $A$, computing the rank, finding a basis for the null space, etc.
 
 # Example
 

@@ -16,10 +16,11 @@ it will be possible to get all the features by depending on a single crate,
 
 ```toml
 [dependencies]
-faer-core     = "0.4"
-faer-lu       = "0.4"
-faer-qr       = "0.4"
-faer-cholesky = "0.4"
+faer-core     = "0.6"
+faer-lu       = "0.6"
+faer-qr       = "0.6"
+faer-cholesky = "0.6"
+faer-svd      = "0.6"
 ```
 
 # Matrix types
