@@ -29,12 +29,12 @@ Bug reports and pull requests can also be posted on the [GitHub][github] reposit
 - Cholesky decomposition, LLT and LDLT,
 - LU decomposition, with partial or full pivoting,
 - QR decomposition, with or without column pivoting.
+- SVD decomposition, supporting real and complex scalars.
 
 # Future plans
 
 Soon:
 - Bunch-Kaufman LDLT decomposition,
-- SVD decomposition,
 - Complete orthogonal decomposition,
 - Eigenvalue decomposition.
 
