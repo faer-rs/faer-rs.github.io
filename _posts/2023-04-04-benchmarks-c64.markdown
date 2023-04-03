@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Benchmarks (c64)"
-date:   2022-12-10 00:00:59 +0100
+date:   2023-04-03 00:00:04 +0100
 permalink: /bench-c64/
 ---
 
