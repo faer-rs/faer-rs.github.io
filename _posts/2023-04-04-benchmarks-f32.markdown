@@ -231,3 +231,23 @@ Computing the SVD of a rectangular matrix with shape `(4096, n)`.
   896    299.1ms    164.1ms    323.7ms      2.94s    526.1ms
  1024    404.9ms    204.1ms    546.2ms      5.08s    723.1ms
 ```
+
+## Hermitian matrix eigenvalue decomposition
+
+Computing the EVD of a hermitian matrix with shape `(n, n)`.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32     53.9µs     49.2µs    133.4µs     35.9µs     33.1µs
+   64    187.8µs    201.4µs    730.1µs    179.7µs    137.2µs
+   96      413µs    469.4µs      3.1ms    502.8µs    333.7µs
+  128    714.1µs    726.1µs      4.5ms      1.1ms    651.5µs
+  192      1.6ms      1.6ms     12.8ms      3.3ms      1.6ms
+  256      2.8ms      2.7ms       28ms      7.2ms      3.4ms
+  384      6.9ms      6.6ms     88.2ms     22.3ms       10ms
+  512     13.3ms     12.1ms    150.8ms     51.4ms     23.1ms
+  640     22.9ms     19.6ms    239.8ms     95.8ms     44.1ms
+  768     35.7ms     28.3ms    345.7ms    163.9ms     75.2ms
+  896     53.5ms       39ms    513.6ms    254.9ms    120.9ms
+ 1024     76.7ms     48.2ms    782.3ms      386ms      177ms
+```

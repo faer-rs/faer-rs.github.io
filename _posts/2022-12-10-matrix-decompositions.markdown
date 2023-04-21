@@ -80,7 +80,7 @@ we don't take into account the effects of floating point arithmetic).
 # Singular value decomposition
 
 The singular value decomposition decomposes a matrix $A$ into
-matrices $U$, $S$, and $V$, where $U$ and $V$ are orthogonal matrices, and $S$
+matrices $U$, $S$, and $V$, where $U$ and $V$ are unitary matrices, and $S$
 is zero except on the main diagonal, such that
 
 $$A = U S V^H.$$
@@ -89,6 +89,16 @@ The diagonal elements of $S$ are stored in non-increasing order.
 
 It has a variety of applications, such as computing a pseudoinverse of the
 matrix $A$, computing the rank, finding a basis for the null space, etc.
+
+# Eigenvalue decomposition
+
+The eigenvalue decomposition decomposes a square matrix $A$ into
+matrices $U$ and $S$, where $U$ is an invertible matrix (unitary if $A$ is
+hermitian), and $S$ is diagonal (+real-valued if $A$ is hermitian), such that
+
+$$A = U S U^{-1}.$$
+
+The diagonal elements of $S$ are stored in non-increasing order.
 
 # Example
 

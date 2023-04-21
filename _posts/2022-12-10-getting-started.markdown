@@ -16,11 +16,11 @@ it will be possible to get all the features by depending on a single crate,
 
 ```toml
 [dependencies]
-faer-core     = "0.6"
-faer-lu       = "0.6"
-faer-qr       = "0.6"
-faer-cholesky = "0.6"
-faer-svd      = "0.6"
+faer-core     = "0.8"
+faer-lu       = "0.8"
+faer-qr       = "0.8"
+faer-cholesky = "0.8"
+faer-svd      = "0.8"
 ```
 
 # Matrix types
@@ -44,7 +44,7 @@ let m0: Mat<f64> = Mat::new();
 let m1: Mat<f64> = Mat::zeros(4, 3);
 
 // 3x3 identity matrix
-let m2 = Mat::with_dims(|i, j| if i == j { 1.0 } else { 0.0 }, 3, 3);
+let m2 = Mat::with_dims(3, 3, |i, j| if i == j { 1.0 } else { 0.0 });
 
 // 4x2 matrix with custom data
 let m3 = mat![
