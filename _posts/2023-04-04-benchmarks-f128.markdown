@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Benchmarks (f32)"
+title:  "Benchmarks (f128)"
 date:   2023-04-03 00:00:03 +0100
-permalink: /bench-f32/
+permalink: /bench-f128/
 ---
 
 The benchmarks were run on an `11th Gen Intel(R) Core(TM) i5-11400 @ 2.60GHz` with 12 threads.  

@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Benchmarks (c32)"
+title:  "Benchmarks (c128)"
 date:   2023-04-03 00:00:13 +0100
-permalink: /bench-c32/
+permalink: /bench-c128/
 ---
 
 The benchmarks were run on an `11th Gen Intel(R) Core(TM) i5-11400 @ 2.60GHz` with 12 threads.  
