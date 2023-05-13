@@ -92,13 +92,11 @@ matrix $A$, computing the rank, finding a basis for the null space, etc.
 
 # Eigenvalue decomposition
 
-The eigenvalue decomposition decomposes a square matrix $A$ into
+The eigenvalue decomposition decomposes a square diagonalizable matrix $A$ into
 matrices $U$ and $S$, where $U$ is an invertible matrix (unitary if $A$ is
 hermitian), and $S$ is diagonal (+real-valued if $A$ is hermitian), such that
 
 $$A = U S U^{-1}.$$
-
-The diagonal elements of $S$ are stored in non-increasing order.
 
 # Example
 

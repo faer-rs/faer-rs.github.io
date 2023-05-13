@@ -30,13 +30,13 @@ Bug reports and pull requests can also be posted on the [GitHub][github] reposit
 - LU decomposition, with partial or full pivoting,
 - QR decomposition, with or without column pivoting.
 - SVD decomposition.
-- Eigenvalue decomposition for hermitian matrices.
+- Eigenvalue decomposition for hermitian and non hermitian (real or complex)
+  matrices.
 
 # Future plans
 
 Soon:
 - Bunch-Kaufman LDLT decomposition,
-- Non hermitian eigenvalue decomposition
 
 Later:
 - High level API,

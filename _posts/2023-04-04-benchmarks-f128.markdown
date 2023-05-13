@@ -1,0 +1,276 @@
+---
+layout: post
+title:  "Benchmarks (f32)"
+date:   2023-04-03 00:00:03 +0100
+permalink: /bench-f32/
+---
+
+The benchmarks were run on an `11th Gen Intel(R) Core(TM) i5-11400 @ 2.60GHz` with 12 threads.  
+- `eigen` is compiled with `-march=native -O3 -fopenmp`
+
+All computations are done on column major matrices containing `f128` values, using the `qd` crate.
+
+## Matrix multiplication
+
+Multiplication of two square matrices of dimension `n`.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32     22.9µs     16.3µs          -          -     88.9µs
+   64    166.5µs     82.2µs          -          -      186µs
+   96    553.1µs    202.8µs          -          -    419.9µs
+  128      1.3ms    420.1µs          -          -      2.7ms
+  192      4.3ms      1.3ms          -          -      3.3ms
+  256     10.2ms      3.3ms          -          -     11.3ms
+  384     34.3ms      9.5ms          -          -     26.4ms
+  512     82.7ms     22.8ms          -          -       91ms
+  640    161.1ms     44.7ms          -          -    166.1ms
+  768    283.4ms     73.5ms          -          -    247.1ms
+  896    452.7ms    117.7ms          -          -    478.6ms
+ 1024    687.2ms    182.3ms          -          -    647.4ms
+```
+
+## Triangular solve
+
+Solving `AX = B` in place where `A` and `B` are two square matrices of dimension `n`, and `A`
+is a triangular matrix.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32     29.8µs     85.3µs          -          -     54.6µs
+   64    157.5µs    251.8µs          -          -    435.7µs
+   96    468.3µs    328.1µs          -          -      1.5ms
+  128    980.3µs    586.8µs          -          -      3.5ms
+  192        3ms      1.2ms          -          -     11.8ms
+  256      6.6ms      2.4ms          -          -     28.1ms
+  384     20.9ms      6.9ms          -          -     94.6ms
+  512     47.1ms     15.2ms          -          -    199.9ms
+  640     92.4ms     30.8ms          -          -    390.5ms
+  768    155.3ms     48.7ms          -          -    677.5ms
+  896    244.9ms     79.7ms          -          -      1.08s
+ 1024    366.6ms    112.9ms          -          -      1.54s
+```
+
+## Triangular inverse
+
+Computing `A^-1` where `A` is a square triangular matrix with dimension `n`.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32     26.3µs     59.8µs          -          -     54.4µs
+   64    109.6µs    180.3µs          -          -    435.7µs
+   96    293.6µs    384.4µs          -          -      1.5ms
+  128    531.6µs    588.5µs          -          -      3.5ms
+  192      1.6ms      1.1ms          -          -     11.8ms
+  256        3ms      1.7ms          -          -     28.1ms
+  384      9.3ms      3.8ms          -          -     94.7ms
+  512     19.4ms        7ms          -          -      200ms
+  640     38.6ms     13.7ms          -          -    390.9ms
+  768     61.6ms     19.7ms          -          -    678.3ms
+  896     94.8ms     31.2ms          -          -      1.08s
+ 1024    135.9ms     43.1ms          -          -      1.54s
+```
+
+## Cholesky decomposition
+
+Factorizing a square matrix with dimension `n` as `L×L.T`, where `L` is lower triangular.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32     22.6µs     66.2µs          -          -     26.9µs
+   64    112.5µs    282.5µs          -          -    170.2µs
+   96    299.9µs    649.3µs          -          -    528.2µs
+  128    574.6µs      1.1ms          -          -      1.1ms
+  192      1.6ms      2.2ms          -          -      3.6ms
+  256      3.2ms      3.5ms          -          -      8.2ms
+  384      9.3ms      7.1ms          -          -     26.6ms
+  512     20.6ms     11.8ms          -          -     61.8ms
+  640     37.5ms     20.1ms          -          -    119.3ms
+  768     63.1ms     27.6ms          -          -    204.7ms
+  896     97.4ms     45.6ms          -          -      323ms
+ 1024    142.6ms     61.1ms          -          -    480.5ms
+```
+
+## LU decomposition with partial pivoting
+
+Factorizing a square matrix with dimension `n` as `P×L×U`, where `P` is a permutation matrix,
+`L` is unit lower triangular and `U` is upper triangular.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32       26µs       73µs          -          -     37.8µs
+   64    142.2µs    304.5µs          -          -    282.7µs
+   96    391.5µs    652.6µs          -          -    936.9µs
+  128    811.9µs      1.2ms          -          -      1.4ms
+  192      2.4ms      2.4ms          -          -      3.6ms
+  256      5.1ms      4.4ms          -          -      8.9ms
+  384     15.7ms      9.7ms          -          -     22.9ms
+  512     34.8ms     19.6ms          -          -     51.2ms
+  640     66.5ms     33.4ms          -          -     91.1ms
+  768    111.8ms       50ms          -          -      141ms
+  896    174.8ms     78.4ms          -          -    238.1ms
+ 1024    257.6ms    109.3ms          -          -    349.9ms
+```
+
+## LU decomposition with full pivoting
+
+Factorizing a square matrix with dimension `n` as `P×L×U×Q.T`, where `P` and `Q` are
+permutation matrices, `L` is unit lower triangular and `U` is upper triangular.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32     17.9µs       18µs          -          -     59.7µs
+   64     97.9µs     97.3µs          -          -    513.8µs
+   96    284.6µs    284.4µs          -          -      1.7ms
+  128      632µs    632.6µs          -          -        4ms
+  192        2ms        2ms          -          -     13.1ms
+  256      4.7ms      4.7ms          -          -     31.2ms
+  384     14.5ms     13.5ms          -          -    103.4ms
+  512     34.9ms       21ms          -          -    244.9ms
+  640     64.3ms     31.1ms          -          -    476.2ms
+  768      115ms     63.9ms          -          -    827.1ms
+  896    193.6ms       90ms          -          -      1.34s
+ 1024    326.3ms    168.5ms          -          -      2.06s
+```
+
+## QR decomposition with no pivoting
+
+Factorizing a square matrix with dimension `n` as `QR`, where `Q` is unitary and `R` is upper
+triangular.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32     94.3µs     94.2µs          -          -       52µs
+   64    360.6µs    360.5µs          -          -    651.4µs
+   96    883.8µs    883.7µs          -          -        2ms
+  128      1.8ms      1.8ms          -          -      4.7ms
+  192      5.1ms      5.1ms          -          -     14.8ms
+  256       11ms      9.9ms          -          -     34.1ms
+  384       34ms     22.5ms          -          -    110.2ms
+  512     77.1ms     44.8ms          -          -    255.7ms
+  640      140ms     74.7ms          -          -    492.5ms
+  768    239.1ms    120.8ms          -          -    843.6ms
+  896    376.3ms    180.5ms          -          -      1.33s
+ 1024      561ms    257.6ms          -          -      1.98s
+```
+
+## QR decomposition with column pivoting
+
+Factorizing a square matrix with dimension `n` as `QRP`, where `P` is a permutation matrix,
+`Q` is unitary and `R` is upper triangular.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32    139.8µs    161.6µs          -          -       84µs
+   64    612.8µs    655.5µs          -          -    480.3µs
+   96      1.5ms      1.6ms          -          -      1.4ms
+  128        3ms      3.1ms          -          -      3.1ms
+  192      8.2ms      8.1ms          -          -      9.8ms
+  256     16.9ms     12.7ms          -          -     22.6ms
+  384     48.8ms     19.2ms          -          -       74ms
+  512    106.4ms     30.5ms          -          -    175.1ms
+  640    197.3ms     47.2ms          -          -      331ms
+  768    330.9ms     71.5ms          -          -    583.9ms
+  896    520.3ms    106.8ms          -          -    920.8ms
+ 1024    779.2ms    184.8ms          -          -      1.44s
+```
+
+## Matrix inverse
+
+Computing the inverse of a square matrix with dimension `n`.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32    108.4µs    156.3µs          -          -    149.9µs
+   64    509.3µs    561.9µs          -          -      1.2ms
+   96      1.4ms      1.3ms          -          -      3.9ms
+  128      2.7ms      2.2ms          -          -      8.5ms
+  192        8ms      4.8ms          -          -     27.3ms
+  256     16.2ms      8.1ms          -          -     65.5ms
+  384     50.3ms     19.1ms          -          -    213.4ms
+  512    109.2ms     38.6ms          -          -    454.1ms
+  640      214ms     71.5ms          -          -    878.6ms
+  768    349.3ms    108.8ms          -          -       1.5s
+  896    539.3ms    167.5ms          -          -      2.38s
+ 1024    786.1ms    256.9ms          -          -      3.43s
+```
+
+## Square matrix singular value decomposition
+
+Computing the SVD of a square matrix with dimension `n`.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32      1.7ms      1.8ms          -          -        3ms
+   64      7.3ms      6.6ms          -          -     17.1ms
+   96     17.2ms     14.1ms          -          -     47.7ms
+  128       32ms     25.2ms          -          -     80.6ms
+  192     77.2ms     52.8ms          -          -    209.4ms
+  256    148.9ms     93.3ms          -          -    390.2ms
+  384    387.1ms    212.9ms          -          -      1.04s
+  512    788.7ms      404ms          -          -      2.07s
+  640      1.37s    657.6ms          -          -      3.63s
+  768      2.21s      1.01s          -          -      5.71s
+  896      3.32s      1.45s          -          -      8.52s
+ 1024       4.8s      1.98s          -          -     12.22s
+```
+
+## Thin matrix singular value decomposition
+
+Computing the SVD of a rectangular matrix with shape `(4096, n)`.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32     17.1ms     16.3ms          -          -     35.4ms
+   64     60.1ms     48.4ms          -          -    206.7ms
+   96    120.6ms     82.1ms          -          -    468.7ms
+  128      211ms    136.2ms          -          -    796.7ms
+  192    463.4ms    270.5ms          -          -      1.72s
+  256    869.6ms    508.5ms          -          -      2.95s
+  384      1.79s    883.9ms          -          -      6.33s
+  512      3.47s      1.81s          -          -     10.99s
+  640      5.12s      2.45s          -          -     16.88s
+  768       7.7s       3.6s          -          -     23.92s
+  896     10.41s      4.71s          -          -     32.28s
+ 1024     14.98s      7.06s          -          -     41.77s
+```
+
+## Hermitian matrix eigenvalue decomposition
+
+Computing the EVD of a hermitian matrix with shape `(n, n)`.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32    557.5µs    786.3µs          -          -    455.9µs
+   64      3.3ms      3.5ms          -          -      2.5ms
+   96      8.5ms      7.7ms          -          -        7ms
+  128     15.7ms     13.8ms          -          -     15.3ms
+  192     40.3ms     30.8ms          -          -     46.5ms
+  256       77ms     55.9ms          -          -    105.1ms
+  384      204ms    125.1ms          -          -    332.4ms
+  512    409.4ms    233.5ms          -          -    771.7ms
+  640      712ms    370.3ms          -          -      1.47s
+  768      1.14s    559.2ms          -          -      2.54s
+  896      1.71s    797.6ms          -          -      4.05s
+ 1024      2.46s      1.07s          -          -      6.17s
+```
+
+## Non Hermitian matrix eigenvalue decomposition
+
+Computing the EVD of a matrix with shape `(n, n)`.
+
+```
+    n       faer  faer(par)    ndarray   nalgebra      eigen
+   32        3ms      3.3ms          -          -      1.4ms
+   64     18.6ms     20.1ms          -          -      9.4ms
+   96     35.7ms     47.4ms          -          -     30.1ms
+  128     70.4ms     88.7ms          -          -     69.6ms
+  192    223.5ms    220.3ms          -          -    207.8ms
+  256    409.9ms    370.1ms          -          -    538.1ms
+  384      1.05s      930ms          -          -      1.66s
+  512      2.12s      1.76s          -          -      4.08s
+  640       3.7s      3.14s          -          -      7.99s
+  768      5.63s      4.55s          -          -     13.56s
+  896      8.17s      6.24s          -          -      21.5s
+ 1024     11.92s      8.68s          -          -     32.53s
+```
