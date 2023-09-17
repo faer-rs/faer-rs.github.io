@@ -36,10 +36,10 @@ Bug reports and pull requests can also be posted on the [GitHub][github] reposit
 # Future plans
 
 Soon:
+- High level API,
 - Bunch-Kaufman LDLT decomposition,
 
 Later:
-- High level API,
 - Sparse algorithms.
 
 [discord]: https://discord.gg/Ak5jDsAFVZ

@@ -16,11 +16,12 @@ it will be possible to get all the features by depending on a single crate,
 
 ```toml
 [dependencies]
-faer-core     = "0.9"
-faer-lu       = "0.9"
-faer-qr       = "0.9"
-faer-cholesky = "0.9"
-faer-svd      = "0.9"
+faer-core     = "0.10"
+faer-lu       = "0.10"
+faer-qr       = "0.10"
+faer-cholesky = "0.10"
+faer-svd      = "0.10"
+faer-evd      = "0.10"
 ```
 
 # Matrix types
@@ -57,7 +58,7 @@ let m3 = mat![
 
 Mathematical operators can be used with matrix types:
 - `+` performs elementwise addition,
-- `-` performs elementwise subtraction,
+- `-` performs elementwise negation/subtraction,
 - `*` performs the scalar product if one of the operands is a scalar and the
   other is a matrix. Otherwise, it performs matrix multiplication
 
