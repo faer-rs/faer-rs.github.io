@@ -7,26 +7,17 @@ permalink: /getting-started/
 
 # Setup
 
-To use `faer` in your project, users can add the required dependencies to their
+To use `faer` in your project, users can add the required dependency to their
 `Cargo.toml` file.
-
-`faer` is split into multiple crates. Once the high level API is implemented,
-it will be possible to get all the features by depending on a single crate,
-`faer`.
 
 ```toml
 [dependencies]
-faer-core     = "0.10"
-faer-lu       = "0.10"
-faer-qr       = "0.10"
-faer-cholesky = "0.10"
-faer-svd      = "0.10"
-faer-evd      = "0.10"
+faer = "0.11"
 ```
 
 # Matrix types
 
-`faer-core` implements three fundamental matrix types:
+`faer` implements three fundamental matrix types:
 - `Mat<T>`: an owning matrix type,
 - `MatRef<'_, T>`: a reference to a matrix,
 - `MatMut<'_, T>`: a mutable reference to a matrix.
@@ -36,7 +27,7 @@ These can be thought of as being analogous to `Vec<T>`, `&'_ T`, `&'_ mut T`.
 Matrices can be created in several ways:
 
 ```rust
-use faer_core::{mat, Mat};
+use faer::{mat, Mat, prelude::*};
 
 // empty 0x0 matrix
 let m0: Mat<f64> = Mat::new();
@@ -45,7 +36,7 @@ let m0: Mat<f64> = Mat::new();
 let m1: Mat<f64> = Mat::zeros(4, 3);
 
 // 3x3 identity matrix
-let m2 = Mat::with_dims(3, 3, |i, j| if i == j { 1.0 } else { 0.0 });
+let m2 = Mat::from_fn(3, 3, |i, j| if i == j { 1.0 } else { 0.0 });
 
 // 4x2 matrix with custom data
 let m3 = mat![
@@ -54,6 +45,9 @@ let m3 = mat![
     [9.83, 1.59],
     [7.13, 5.02_f64],
 ];
+
+// compute the qr decomposition of a matrix
+let qr_decomposition = m3.qr();
 ```
 
 Mathematical operators can be used with matrix types:
@@ -65,4 +59,4 @@ Mathematical operators can be used with matrix types:
 For more details on creating and manipulating matrix types, users can checkout
 the documentation on [docs.rs][docs].
 
-[docs]: https://docs.rs/faer-core/latest/faer_core/
+[docs]: https://docs.rs/faer/latest/faer/

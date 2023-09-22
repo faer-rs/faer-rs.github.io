@@ -6,9 +6,10 @@ layout: home
 # About faer
 
 `faer` is a linear algebra library developed in the Rust programming
-language. It exposes a low level API, similar to the one offered by
-`BLAS/Lapack` libraries, modified to better match the capabilities of modern
-computers, and allows tweaking the inner parameters of the various algorithms.
+language. It exposes a high level abstraction over a lower level API, similar
+to the one offered by `BLAS/Lapack` libraries, modified to better match the
+capabilities of modern computers, and allows tweaking the inner parameters of
+the various algorithms.
 
 A high level interface is planned in the future, once the basic building blocks
 are ready and a suitable API design is stabilized.
@@ -36,7 +37,6 @@ Bug reports and pull requests can also be posted on the [GitHub][github] reposit
 # Future plans
 
 Soon:
-- High level API,
 - Bunch-Kaufman LDLT decomposition,
 
 Later:
