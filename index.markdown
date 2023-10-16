@@ -27,7 +27,7 @@ Bug reports and pull requests can also be posted on the [GitHub][github] reposit
 - Matrix creation and basic operation (addition, subtraction, multiplication, etc.),
 - High performance matrix multiplication,
 - Triangular solvers,
-- Cholesky decomposition, LLT and LDLT,
+- Cholesky decomposition, LLT, LDLT, and Bunch-Kaufman LBLT,
 - LU decomposition, with partial or full pivoting,
 - QR decomposition, with or without column pivoting.
 - SVD decomposition.
@@ -36,10 +36,6 @@ Bug reports and pull requests can also be posted on the [GitHub][github] reposit
 
 # Future plans
 
-Soon:
-- Bunch-Kaufman LDLT decomposition,
-
-Later:
 - Sparse algorithms.
 
 [discord]: https://discord.gg/Ak5jDsAFVZ

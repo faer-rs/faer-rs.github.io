@@ -134,6 +134,7 @@ let mut stack = DynStack::new(&mut mem);
 let mut ldl_factors = a.clone();
 ldl::compute::raw_cholesky_in_place(
     ldl_factors.as_mut(),
+    Default::default(), // no regularization
     Parallelism::None,
     stack.rb_mut(),
     Default::default(), // use default parameters
