@@ -12,7 +12,7 @@ To use `faer` in your project, users can add the required dependency to their
 
 ```toml
 [dependencies]
-faer = "0.13"
+faer = "0.16"
 ```
 
 # Matrix types

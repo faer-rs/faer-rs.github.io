@@ -11,9 +11,6 @@ to the one offered by `BLAS/Lapack` libraries, modified to better match the
 capabilities of modern computers, and allows tweaking the inner parameters of
 the various algorithms.
 
-A high level interface is planned in the future, once the basic building blocks
-are ready and a suitable API design is stabilized.
-
 # Community
 
 Most of the discussion around the library happens on the [Discord][discord] server.
@@ -33,10 +30,12 @@ Bug reports and pull requests can also be posted on the [GitHub][github] reposit
 - SVD decomposition.
 - Eigenvalue decomposition for hermitian and non hermitian (real or complex)
   matrices.
+- Sparse algorithms.
 
 # Future plans
 
-- Sparse algorithms.
+- n-dimensional tensor structures and operations.
+- GPU acceleration.
 
 [discord]: https://discord.gg/Ak5jDsAFVZ
 [github]: https://github.com/sarah-ek/faer-rs
