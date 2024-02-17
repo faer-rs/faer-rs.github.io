@@ -1,0 +1,511 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>simd</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/sarah-quinones/faer-rs" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="simd"><a class="header" href="#simd">simd</a></h1>
+<p><em><code>faer</code></em> provides a common interface for generic and composable simd, using the
+<em><code>pulp</code></em> crate as a backend. <em><code>pulp</code></em>'s high level api abstracts away the differences
+between various instruction sets and provides a common api that's generic over
+them (but not the scalar type). this allows users to write a generic implementation
+that gets turned into several functions, one for each possible instruction set
+among a predetermined subset. finally, the generic implementation can be used along
+with an <code>Arch</code> structure that determines the best implementation at runtime.</p>
+<p>Here's an example of how <em><code>pulp</code></em> could be used to compute the expression \(x^2 +
+2y - |z|\), and store it into an output vector.</p>
+<pre><code class="language-rust">use core::iter::zip;
+
+fn compute_expr(out: &amp;mut[f64], x: &amp;[f64], y: &amp;[f64], z: &amp;[f64]) {
+    struct Impl&lt;'a&gt; {
+        out: &amp;'a mut [f64],
+        x: &amp;'a [f64],
+        y: &amp;'a [f64],
+        z: &amp;'a [f64],
+    }
+
+    impl pulp::WithSimd for Impl&lt;'_&gt; {
+        type Output = ();
+
+        #[inline(always)]
+        fn with_simd&lt;S: pulp::Simd&gt;(self, simd: S) {
+            let Self { out, x, y, z } = self;
+
+            let (out_head, out_tail) = S::as_mut_simd_f64s(out);
+            let (x_head, x_tail) = S::as_simd_f64s(x);
+            let (y_head, y_tail) = S::as_simd_f64s(y);
+            let (z_head, z_tail) = S::as_simd_f64s(z);
+
+            let two = simd.splat_f64s(2.0);
+            for (out, (&amp;x, (&amp;y, &amp;z))) in zip(
+                out_head,
+                zip(x_head, zip(y_head, z_head)),
+            ) {
+                *out = simd.add_f64s(
+                    x,
+                    simd.sub_f64s(simd.mul_f64s(two, y), simd.abs_f64s(z)),
+                );
+            }
+
+            for (out, (&amp;x, (&amp;y, &amp;z))) in zip(
+                out_tail,
+                zip(x_tail, zip(y_tail, z_tail)),
+            ) {
+                *out = x - 2.0 * y - z.abs();
+            }
+        }
+    }
+
+    pulp::Arch::new().dispatch(Impl { out, x, y, z });
+}</code></pre>
+<p>there's a lot of things going on at the same time in this code example. let us
+go over them step by step.</p>
+<p><em><code>pulp</code></em>'s generic simd implementation happens through the <code>WithSimd</code> trait,
+which takes <code>self</code> by value to pass in the function parameters. it additionally
+provides another parameter to <code>with_simd</code> describing the instruction set being
+used. <code>WithSimd::with_simd</code> <em>must</em> be marked with the <code>#[inline(always)]</code> attribute.
+forgetting to do so could lead to a significant performance drop.</p>
+<p>inside the body of the function, we split up each of <code>out</code>, <code>x</code>, <code>y</code> and
+<code>z</code> into two parts using <code>S::as_f64s[_mut]_simd</code>. the first part (<code>head</code>) is a
+slice of <code>S::f64s</code>, representing the vectorizable part of the original slice.
+The second part (<code>tail</code>) contains the remainder that doesn't fit into a vector
+register.</p>
+<p>handling the head section is done using vectorized operation. currently these
+need to take <code>simd</code> as a parameter, in order to guarantee its availability in a
+sound way. this is what allows the api to be safe. the tail section is handled
+using scalar operations.</p>
+<p>the final step is actually calling into our simd implementation. this is done
+by creating an instance of <code>pulp::Arch</code> that performs the runtime detection
+(and caches the result, so that future invocations are as fast as possible),
+then calling <code>Arch::dispatch</code> which takes a type that implements <code>WithSimd</code>,
+and chooses the best simd implementation for it.</p>
+<h1 id="memory-alignment"><a class="header" href="#memory-alignment">memory alignment</a></h1>
+<p>instead of splitting the input and output slices into two sections
+(vectorizable head + non-vectorizable tail), an alternative approach would be
+to split them up into three sections instead (vectorizable head + vectorizable
+body + vectorizable tail). this can be accomplished using masked loads and
+stores, which can speed things up if the slices are <em>similarly aligned</em>.</p>
+<p>similarly aligned slices are slices which have the same base address modulo
+the byte size of the cpu's vector registers. the simplest way to guarantee this
+is to allocate the slices in aligned memory (such that the base address is a
+multiple of the register size in bytes), in which case the slices are similarly
+aligned, and any subslices of them (with a shared offset and size) will also be
+similarly aligned. aligned allocation is done automatically for matrices in <em><code>faer</code></em>,
+which helps uphold these guarantees for maximum performance.</p>
+<p><em><code>pulp</code></em> itself doesn't currently provide safe memory alignment api for now. but provides an unsafe
+abstraction that can be used to build. the <em><code>faer</code></em> implementation is built on top of
+<a href="https://docs.rs/pulp/0.19.4/pulp/trait.Simd.html#method.mask_between_m64s"><code>Simd::mask_between_xxx</code></a>, <a href="https://docs.rs/pulp/0.19.4/pulp/trait.Simd.html#method.mask_load_ptr_f64s"><code>Simd::mask_load_ptr_xxx</code></a> and <a href="https://docs.rs/pulp/0.19.4/pulp/trait.Simd.html#method.mask_store_ptr_f64s"><code>Simd::mask_store_ptr_xxx</code></a>, as well as the lifetime branded indexing api.</p>
+<p>example using <em><code>faer</code></em> simd:</p>
+<pre><code class="language-rust">use faer::ComplexField;
+use faer::ColRef;
+use faer::ContiguousFwd;
+use faer::utils::simd::SimdCtx;
+use faer::utils::bound::Dim;
+use pulp::Simd;
+
+#[inline(always)]
+pub fn dot_product_f32&lt;'N, S: Simd&gt;(
+    simd: S,
+    lhs: ColRef&lt;'_, f32, Dim&lt;'N&gt;, ContiguousFwd&gt;,
+    rhs: ColRef&lt;'_, f32, Dim&lt;'N&gt;, ContiguousFwd&gt;,
+) -&gt; f32 {
+    let simd = f32::simd_ctx(simd);
+    let N = lhs.nrows();
+    let align = size_of::&lt;S::f32s&gt;();
+
+    let simd = SimdCtx::&lt;'N, f32, S&gt;::new_align(
+        simd,
+        N,
+        lhs.as_ptr().align_offset(align),
+    );
+
+    let mut acc0 = simd.zero();
+    let mut acc1 = simd.zero();
+    let mut acc2 = simd.zero();
+    let mut acc3 = simd.zero();
+
+    let (head, idx4, idx1, tail) = simd.batch_indices::&lt;4&gt;();
+
+    if let Some(i0) = head {
+        let l0 = simd.read(lhs, i0);
+        let r0 = simd.read(rhs, i0);
+
+        acc0 = simd.mul_add(l0, r0, acc0);
+    }
+    for [i0, i1, i2, i3] in idx4 {
+        let l0 = simd.read(lhs, i0);
+        let l1 = simd.read(lhs, i1);
+        let l2 = simd.read(lhs, i2);
+        let l3 = simd.read(lhs, i3);
+
+        let r0 = simd.read(rhs, i0);
+        let r1 = simd.read(rhs, i1);
+        let r2 = simd.read(rhs, i2);
+        let r3 = simd.read(rhs, i3);
+
+        acc0 = simd.mul_add(l0, r0, acc0);
+        acc1 = simd.mul_add(l1, r1, acc1);
+        acc2 = simd.mul_add(l2, r2, acc2);
+        acc3 = simd.mul_add(l3, r3, acc3);
+    }
+
+    for i0 in idx1 {
+        let l0 = simd.read(lhs, i0);
+        let r0 = simd.read(rhs, i0);
+
+        acc0 = simd.mul_add(l0, r0, acc0);
+    }
+    if let Some(i0) = tail {
+        let l0 = simd.read(lhs, i0);
+        let r0 = simd.read(rhs, i0);
+
+        acc0 = simd.mul_add(l0, r0, acc0);
+    }
+    acc0 = simd.add(acc0, acc1);
+    acc2 = simd.add(acc2, acc3);
+    acc0 = simd.add(acc0, acc2);
+
+    simd.reduce_sum(acc0)
+}</code></pre>
+<p>assuming the alignment offset manages to align both <code>lhs</code> and <code>rhs</code>, this version can be much more efficient than the unaligned one.</p>
+<p>however, it has a subtle bug that we will explain in the next section.</p>
+<h1 id="floating-point-determinism"><a class="header" href="#floating-point-determinism">floating point determinism</a></h1>
+<p>when performing reductions on floating point values, it's important to keep in mind that these operations
+are typically only approximately associative and commutative. so the rounding error arising from the limited
+float precision depends on the order in which the operations are performed.</p>
+<p>there is however a useful loophole we can exploit, assume we have a register size of 4, and we want to sum up 23 elements, with a batch size of two registers.</p>
+<pre><code class="language-rust">[
+    x0, x1, x2, x3,
+    x4, x5, x6, x7,
+    x8, x9, x10, x11,
+    x12, x13, x14, x15,
+    x16, x17, x18, x19,
+    x20, x21, x22,
+]</code></pre>
+<p>if we use something similar to the previous algorithm, we get the following intermediate results.</p>
+<p>in the case where the alignment offset is <code>0</code>.</p>
+<pre><code class="language-rust">// after the batch 2 loop
+acc0 = f32x4(
+    x0 + x8,
+    x1 + x9,
+    x2 + x10,
+    x3 + x11,
+);
+acc1 = f32x4(
+    x4 + x12,
+    x5 + x13,
+    x6 + x14,
+    x7 + x15,
+);
+
+// after the batch 1 loop
+acc0 = f32x4(
+    (x0 + x8) + x16,
+    (x1 + x9) + x17,
+    (x2 + x10) + x18,
+    (x3 + x11) + x19,
+);
+
+// after the tail
+acc0 = f32x4(
+    ((x0 + x8) + x16) + x20,
+    ((x1 + x9) + x17) + x21,
+    ((x2 + x10) + x18) + x22,
+    ((x3 + x11) + x19) + 0.0,
+);
+
+// we add up `acc0` and `acc1`
+acc = f32x4(
+    (((x0 + x8) + x16) + x20) + (x4 + x12),
+    (((x1 + x9) + x17) + x21) + (x5 + x13),
+    (((x2 + x10) + x18) + x22) + (x6 + x14),
+    (((x3 + x11) + x19) + 0.0) + (x7 + x15),
+);
+
+// reduce sum: x =&gt; (x.0 + x.2) + (x.1 + x.3)
+acc = (((((x0 + x8) + x16) + x20) + (x4 + x12)) + ((((x1 + x9) + x17) + x21) + (x5 + x13)))
+    + ((((x2 + x10) + x18) + x22) + (x6 + x14)) + ((((x3 + x11) + x19) + 0.0) + (x7 + x15))</code></pre>
+<p>now let us take the case where the alignment offset is <code>3</code> instead. in this case we pad the array by one element on the left before proceeding.</p>
+<p>so it's as if we were working with</p>
+<pre><code class="language-rust">[
+    0.0, x0, x1, x2,
+    x3, x4, x5, x6,
+    x7, x8, x9, x10,
+    x11, x12, x13, x14,
+    x15, x16, x17, x18,
+    x19, x20, x21, x22,
+]</code></pre>
+<p>skipping the intermediate computations, we get the final result</p>
+<pre><code class="language-rust">acc = (((((0.0 + x7) + x15) + x19) + (x3 + x11)) + ((((x0 + x8) + x16) + x20) + (x4 + x12)))
+    + ((((x1 + x9) + x17) + x21) + (x5 + x13)) + ((((x2 + x10) + x18) + x19) + (x6 + x14))</code></pre>
+<p>note that this version of the result contains the term <code>((x2 + x10) + x18) + x19</code>, which doesn't appear
+as a term in the original sum unless we assume exact associativity. (commutativity is assumed to be exact for the operations we care about.)</p>
+<p>this results in us getting a slightly different result than before, which could lead to hard-to-reproduce bugs if the user expects consistent behavior
+between different runs on the same machine. and the alignment happens to be different due to a difference in the memory allocator or the os behavior.</p>
+<p>however, if we sum up our elements like this</p>
+<pre><code class="language-rust">// after the batch 2 loop
+acc0 = f32x4(
+    x0 + x8,
+    x1 + x9,
+    x2 + x10,
+    x3 + x11,
+);
+acc1 = f32x4(
+    x4 + x12,
+    x5 + x13,
+    x6 + x14,
+    x7 + x15,
+);
+
+// after the batch 1 loop
+acc0 = f32x4(
+    (x0 + x8) + x16,
+    (x1 + x9) + x17,
+    (x2 + x10) + x18,
+    (x3 + x11) + x19,
+);
+
+// after the tail
+acc1 = f32x4(
+    (x4 + x12) + x20,
+    (x5 + x13) + x21,
+    (x6 + x14) + x22,
+    (x7 + x15) + 0.0,
+);
+
+// we add up `acc0` and `acc1`
+acc = f32x4(
+    ((x0 + x8) + x16) + ((x4 + x12) + x20),
+    ((x1 + x9) + x17) + ((x5 + x13) + x21),
+    ((x2 + x10) + x18) + ((x6 + x14) + x22),
+    ((x3 + x11) + x19) + ((x7 + x15) + 0.0),
+);
+
+// reduce sum: x =&gt; (x.0 + x.2) + (x.1 + x.3)
+acc = (((x0 + x8) + x16) + ((x4 + x12) + x20) + ((x1 + x9) + x17) + ((x5 + x13) + x21))
+    + (((x2 + x10) + x18) + ((x6 + x14) + x22) + (((x3 + x11) + x19) + ((x7 + x15) + 0.0)))</code></pre>
+<p>then the offset version outputs:</p>
+<pre><code class="language-rust">acc = (((0.0 + x7) + x15) + ((x3 + x11) + x19) + ((x0 + x8) + x16) + ((x4 + x12) + x20))
+    + (((x1 + x9) + x17) + ((x5 + x13) + x21) + (((x2 + x10) + x18) + ((x6 + x14) + x22)))</code></pre>
+<p>close inspection will reveal that this is exactly equal to the previous sum,
+assuming that <code>x + 0.0 == x</code> (which is true modulo signed zero), and <code>x + y == y + x</code>.</p>
+<p>to generalize this strategy, it can be shown that reducing the outputs by rotating the accumulators</p>
+<pre><code>acc0 -&gt; acc1 -&gt; acc2 -&gt; acc3 -&gt; acc0 -&gt; acc1 -&gt; acc2 -&gt; acc3 -&gt; acc0 -&gt; ...
+</code></pre>
+<p>and performing a tree reduction at the end</p>
+<pre><code class="language-rust">acc = (acc0 + acc2) + (acc1 + acc3);
+
+// similarly reduce `acc`
+acc = (acc.0 + acc.2) + (acc.1 + acc.3);</code></pre>
+<p>will always produce the same results.</p>
+<p><em><code>faer</code></em> aims to guarantee this behavior, and not doing so is considered a bug.</p>
+<h1 id="universal-floating-point-determinism"><a class="header" href="#universal-floating-point-determinism">universal floating point determinism</a></h1>
+<p>the determinism we mentioned above still only guarantees the same results between different runs on the same machine.</p>
+<p>if the register size is changed for example, then the logic falls apart. if we want to guarantee that the results
+will be the same on any machine, other conditions must be met.</p>
+<p>the first one is that the register size must be the same everywhere, this means that we must fix a register size
+that's available with one instruction set, and emulate it on ones where it's not available. the other condition
+is that the number of threads executing the code must be the same. this is due to the fact that reductions parameters depend on
+the thread count, if we use multithreadede reductions.</p>
+<p>currently, <em><code>faer</code></em> doesn't provide universal floating point determinism as a feature. since simd emulation
+comes with overhead, this must be an opt-in feature that we want to provide in a future release. the matrix multiplication
+backend used by <em><code>faer</code></em> must also satisfy the same criteria in that case, which is also still a work in progress.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="dev-branding.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="dev-branding.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
