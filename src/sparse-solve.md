@@ -78,7 +78,7 @@ let a = SparseColMat::<usize, f64>::try_new_from_triplets(
         (2, 1, -45.0),
     ],
 ).unwrap();
-let b = mat![[15.0], [-3.0f64]];
+let b = mat![[15.0], [-3.0], [33.0f64]];
 
 let qr = a.sp_qr().unwrap();
 let x = qr.solve_lstsq(&b);
