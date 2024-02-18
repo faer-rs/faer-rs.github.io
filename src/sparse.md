@@ -45,7 +45,7 @@ values          = [2.0, 4.0, 7.0, 1.0, 5.0, 3.0, 6.0]
 ```
 
 CSC matrices require the row indices in each column to be sorted and contain no duplicates, and matrices created by `faer` will respect that unless otherwise specified.
-The same is true for CSC matrices.  
+The same is true for CSR matrices.  
 Some algorithms specifically don't strictly require sorted indices, such as the matrix decomposition algorithms. In which case `faer` provides an escape hatch for users that wish to avoid the overhead of sorting their input data.
 
 The simplest way to create sparse matrices is to use the [`SparseColMat::try_new_from_triplets`](https://docs.rs/faer-core/latest/faer_core/sparse/type.SparseColMat.html#method.try_new_from_triplets) (or [`SparseRowMat::try_new_from_triplets`](https://docs.rs/faer-core/latest/faer_core/sparse/type.SparseRowMat.html#method.try_new_from_triplets)) constructor, which takes as input a potentially unsorted list of tuples containing the row index, column index and numerical value of each entry.
