@@ -198,6 +198,9 @@ to the last row and column.
 [`mat::from_column_major_slice_mut`]: https://docs.rs/faer/latest/faer/mat/fn.from_column_major_slice_mut.html
 [`mat::from_row_major_slice_mut`]: https://docs.rs/faer/latest/faer/mat/fn.from_row_major_slice_mut.html
 
+[`mat::from_raw_parts`]: https://docs.rs/faer/latest/faer/mat/fn.from_raw_parts.html
+[`mat::from_raw_parts_mut`]: https://docs.rs/faer/latest/faer/mat/fn.from_raw_parts_mut.html
+
 [`mat::from_column_major_slice_with_stride`]: https://docs.rs/faer/latest/faer/mat/fn.from_column_major_slice_with_stride.html
 [`mat::from_row_major_slice_with_stride`]: https://docs.rs/faer/latest/faer/mat/fn.from_row_major_slice_with_stride.html
 [`mat::from_column_major_slice_with_stride_mut`]: https://docs.rs/faer/latest/faer/mat/fn.from_column_major_slice_with_stride_mut.html
