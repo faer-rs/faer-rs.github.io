@@ -219,3 +219,6 @@ to the last row and column.
 [`MatMut::subrows_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.subrows_mut
 [`MatRef::subcols`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.subcols
 [`MatMut::subcols_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.subcols_mut
+
+[`MatRef::get`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.get
+[`MatMut::get_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.get_mut
