@@ -1,3 +1,5 @@
+# Solving a Linear System
+
 Several applications require solving a linear system of the form \\(A x = b\\).
 The recommended method can vary depending on the properties of \\(A\\), and the
 desired numerical accuracy.

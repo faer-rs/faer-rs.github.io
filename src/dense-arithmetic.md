@@ -1,7 +1,7 @@
 # Matrix arithmetic operations
 `faer` matrices implement most of the arithmetic operators, so two matrices
 can be added simply by writing `&a + &b`, the result of the expression is a
-`faer::Mat`, which allows simple chaining of operations (e.g. `(&a + &b) * &c`), although
+`faer::Mat`, which allows simple chaining of operations (e.g. `(&a + faer::scale(3.0) * &b) * &c`), although
 at the cost of allocating temporary matrices.
 
 Temporary allocations can be avoided by using the [`zipped!`](https://docs.rs/faer/latest/faer/macro.zipped.html) api:
