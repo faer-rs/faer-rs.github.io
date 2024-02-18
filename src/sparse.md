@@ -75,7 +75,9 @@ let a = match a {
     Ok(a) => a,
     Err(err) => match err {
         CreationError::Generic(err) => return Err(err),
-        OutOfBounds { row, col } => panic!("some of the provided indices exceed the size of the matrix."),
+        CreationError::OutOfBounds { row, col } => {
+            panic!("some of the provided indices exceed the size of the matrix.")
+        }
     },
 };
 ```
