@@ -1,7 +1,7 @@
 To use faer in your project, you can add the required dependency to your `Cargo.toml` file.
 ```toml
 [dependencies]
-faer = "0.17"
+faer = "0.18"
 ```
 
 For day-to-day development, we recommend enabling optimizations for `faer`, since the layers of generics can add considerable overhead in unoptimized builds.

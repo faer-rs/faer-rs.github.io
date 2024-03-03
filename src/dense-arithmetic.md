@@ -18,12 +18,12 @@ zipped!(&mut c, &a, &b).for_each(|unzipped!(c, a, b)| *c = *a + *b);
 // Sums `a`, `b` and `c` into a new matrix `d`.
 let d = zipped!(&mut c, &a, &b).map(|unzipped!(c, a, b)| *a + *b + *c);
 ```
-For matrix multiplication, the non-allocating api is provided in the
-[`faer::modules::core::mul`](https://docs.rs/faer-core/latest/faer_core/mul/index.html) module.
+For matrix multiplication, the non-allocating api in-place is provided in the
+[`faer::linalg::matmul`](https://docs.rs/faer/latest/faer/matmul/index.html) module.
 
 ```rust
 use faer::{Mat, Parallelism};
-use faer::modules::core::mul::matmul;
+use faer::linalg::matmul::matmul;
 
 let a = Mat::<f64>::zeros(4, 3);
 let b = Mat::<f64>::zeros(3, 5);

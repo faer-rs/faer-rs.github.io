@@ -6,11 +6,11 @@ desired numerical accuracy.
 
 ## \\(A\\) is triangular
 In this case, one can use \\(A\\) and \\(b\\) directly to find \\(x\\), using the functions
-provided in [`faer::modules::core::solve`](https://docs.rs/faer-core/latest/faer_core/solve/index.html).
+provided in [`faer::linalg::triangular_solve`](https://docs.rs/faer/latest/faer/triangular_solve/index.html).
 
 ```rust
 use faer::{Mat, Parallelism};
-use faer::modules::core::solve::solve_lower_triangular_in_place;
+use faer::linalg::triangular_solve::solve_lower_triangular_in_place;
 
 let a = Mat::<f64>::from_fn(4, 4, |i, j| if i >= j { 1.0 } else { 0.0 });
 let b = Mat::<f64>::from_fn(4, 2, |i, j| (i - j) as f64);
@@ -23,7 +23,7 @@ solve_lower_triangular_in_place(a.as_ref(), x.as_mut(), Parallelism::None);
 ```
 
 In the case where \\(A\\) has a unit diagonal, one can use
-[`solve_unit_lower_triangular_in_place`](https://docs.rs/faer-core/latest/faer_core/solve/fn.solve_unit_lower_triangular_in_place.html), which avoids reading the diagonal, and
+[`solve_unit_lower_triangular_in_place`](https://docs.rs/faer/latest/faer/triangular_solve/fn.solve_unit_lower_triangular_in_place.html), which avoids reading the diagonal, and
 instead implicitly uses the value `1.0` as a replacement.
 
 ## \\(A\\) is real-symmetric/complex-Hermitian
@@ -55,10 +55,10 @@ will skip similar examples for the remainder of this page.
 
 ```rust
 use faer::{mat, Parallelism, Conj};
-use faer::modules::cholesky::llt::compute::cholesky_in_place_req;
-use faer::modules::cholesky::llt::compute::{cholesky_in_place, LltRegularization, LltParams};
-use faer::modules::cholesky::llt::solve::solve_in_place_req;
-use faer::modules::cholesky::llt::solve::solve_in_place_with_conj;
+use faer::linalg::cholesky::llt::compute::cholesky_in_place_req;
+use faer::linalg::cholesky::llt::compute::{cholesky_in_place, LltRegularization, LltParams};
+use faer::linalg::cholesky::llt::solve::solve_in_place_req;
+use faer::linalg::cholesky::llt::solve::solve_in_place_with_conj;
 use dyn_stack::{PodStack, GlobalPodBuffer};
 
 let a = mat![
