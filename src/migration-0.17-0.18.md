@@ -1,5 +1,5 @@
 # Migration from v0.17 to v0.18
-`faer v0.18` comes with a refactor of the code base into a more scalable form and to better improve the user experience with the [docs.rs](https://docs.rs) documentation.
+`faer v0.18` comes with a refactor of the code base into a more scalable form and to better improve the user experience with the [docs.rs](https://docs.rs/faer/latest/faer/) documentation.
 The changes affect mostly the low level APIs. These include:
 - Merging `faer-core`, `faer-cholesky`, `faer-lu`, `faer-qr`, `faer-svd`, `faer-evd`, `faer-sparse` into `faer`.
 Those crates are now deprecated and will no longer be updated, so switching to depending on `faer` directly is recommended.
