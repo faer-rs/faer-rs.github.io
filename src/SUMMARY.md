@@ -2,7 +2,8 @@
 
 [Introduction](./intro.md)
 [Getting Started](./getting-started.md)
-[Benchmarks](./bench.md)
+[Benchmarks (single-threaded)](./bench-st.md)
+[Benchmarks (multi-threaded)](./bench-mt.md)
 
 ---
 # User guide
