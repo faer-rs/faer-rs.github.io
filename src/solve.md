@@ -6,7 +6,7 @@ desired numerical accuracy.
 
 ## \\(A\\) is triangular
 In this case, one can use \\(A\\) and \\(b\\) directly to find \\(x\\), using the functions
-provided in [`faer::linalg::triangular_solve`](https://docs.rs/faer/latest/faer/triangular_solve/index.html).
+provided in [`faer::linalg::triangular_solve`](https://docs.rs/faer/latest/faer/linalg/triangular_solve/index.html).
 
 ```rust
 use faer::{Mat, Parallelism};
@@ -23,7 +23,7 @@ solve_lower_triangular_in_place(a.as_ref(), x.as_mut(), Parallelism::None);
 ```
 
 In the case where \\(A\\) has a unit diagonal, one can use
-[`solve_unit_lower_triangular_in_place`](https://docs.rs/faer/latest/faer/triangular_solve/fn.solve_unit_lower_triangular_in_place.html), which avoids reading the diagonal, and
+[`solve_unit_lower_triangular_in_place`](https://docs.rs/faer/latest/faer/linalg/triangular_solve/fn.solve_unit_lower_triangular_in_place.html), which avoids reading the diagonal, and
 instead implicitly uses the value `1.0` as a replacement.
 
 ## \\(A\\) is real-symmetric/complex-Hermitian

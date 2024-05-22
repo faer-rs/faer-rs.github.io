@@ -187,11 +187,11 @@ of rows and columns of the submatrix.
 On the other hand, [`MatRef::get`] takes a range from the first row and column
 to the last row and column.
 
-[`Mat`]: https://docs.rs/faer/latest/faer/type.Mat.html
-[`MatRef`]: https://docs.rs/faer/latest/faer/type.MatRef.html
-[`MatMut`]: https://docs.rs/faer/latest/faer/type.MatMut.html
+[`Mat`]: https://docs.rs/faer/latest/faer/mat/struct.Mat.html
+[`MatRef`]: https://docs.rs/faer/latest/faer/mat/struct.MatRef.html
+[`MatMut`]: https://docs.rs/faer/latest/faer/mat/struct.MatMut.html
 
-[`Mat::from_fn`]: https://docs.rs/faer/latest/faer/type.Mat.html#method.from_fn
+[`Mat::from_fn`]: https://docs.rs/faer/latest/faer/mat/struct.Mat.html#method.from_fn
 
 [`mat::from_column_major_slice`]: https://docs.rs/faer/latest/faer/mat/fn.from_column_major_slice.html
 [`mat::from_row_major_slice`]: https://docs.rs/faer/latest/faer/mat/fn.from_row_major_slice.html
@@ -206,19 +206,19 @@ to the last row and column.
 [`mat::from_column_major_slice_with_stride_mut`]: https://docs.rs/faer/latest/faer/mat/fn.from_column_major_slice_with_stride_mut.html
 [`mat::from_row_major_slice_with_stride_mut`]: https://docs.rs/faer/latest/faer/mat/fn.from_row_major_slice_with_stride_mut.html
 
-[`MatRef::split_at`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.split_at
-[`MatMut::split_at_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.split_at_mut
-[`MatRef::split_at_col`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.split_at_col
-[`MatMut::split_at_col_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.split_at_col_mut
-[`MatRef::split_at_row`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.split_at_row
-[`MatMut::split_at_row_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.split_at_row_mut
+[`MatRef::split_at`]: https://docs.rs/faer/latest/faer/mat/struct.MatRef.html#method.split_at
+[`MatMut::split_at_mut`]: https://docs.rs/faer/latest/faer/mat/struct.MatMut.html#method.split_at_mut
+[`MatRef::split_at_col`]: https://docs.rs/faer/latest/faer/mat/struct.MatRef.html#method.split_at_col
+[`MatMut::split_at_col_mut`]: https://docs.rs/faer/latest/faer/mat/struct.MatMut.html#method.split_at_col_mut
+[`MatRef::split_at_row`]: https://docs.rs/faer/latest/faer/mat/struct.MatRef.html#method.split_at_row
+[`MatMut::split_at_row_mut`]: https://docs.rs/faer/latest/faer/mat/struct.MatMut.html#method.split_at_row_mut
 
-[`MatRef::submatrix`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.submatrix
-[`MatMut::submatrix_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.submatrix_mut
-[`MatRef::subrows`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.subrows
-[`MatMut::subrows_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.subrows_mut
-[`MatRef::subcols`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.subcols
-[`MatMut::subcols_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.subcols_mut
+[`MatRef::submatrix`]: https://docs.rs/faer/latest/faer/mat/struct.MatRef.html#method.submatrix
+[`MatMut::submatrix_mut`]: https://docs.rs/faer/latest/faer/mat/struct.MatMut.html#method.submatrix_mut
+[`MatRef::subrows`]: https://docs.rs/faer/latest/faer/mat/struct.MatRef.html#method.subrows
+[`MatMut::subrows_mut`]: https://docs.rs/faer/latest/faer/mat/struct.MatMut.html#method.subrows_mut
+[`MatRef::subcols`]: https://docs.rs/faer/latest/faer/mat/struct.MatRef.html#method.subcols
+[`MatMut::subcols_mut`]: https://docs.rs/faer/latest/faer/mat/struct.MatMut.html#method.subcols_mut
 
-[`MatRef::get`]: https://docs.rs/faer/latest/faer/type.MatRef.html#method.get
-[`MatMut::get_mut`]: https://docs.rs/faer/latest/faer/type.MatMut.html#method.get_mut
+[`MatRef::get`]: https://docs.rs/faer/latest/faer/mat/struct.MatRef.html#method.get
+[`MatMut::get_mut`]: https://docs.rs/faer/latest/faer/mat/struct.MatMut.html#method.get_mut

@@ -19,7 +19,7 @@ zipped!(&mut c, &a, &b).for_each(|unzipped!(c, a, b)| *c = *a + *b);
 let d = zipped!(&mut c, &a, &b).map(|unzipped!(c, a, b)| *a + *b + *c);
 ```
 For matrix multiplication, the non-allocating api in-place is provided in the
-[`faer::linalg::matmul`](https://docs.rs/faer/latest/faer/matmul/index.html) module.
+[`faer::linalg::matmul`](https://docs.rs/faer/latest/faer/linalg/matmul/index.html) module.
 
 ```rust
 use faer::{Mat, Parallelism};

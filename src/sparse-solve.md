@@ -6,10 +6,10 @@ The variant is selected automatically depending on the sparsity structure of the
 And although the lower level API provides a way to tune the selection options, it is currently not fully documented.
 
 ## \\(A\\) is triangular
-[`faer::sparse::FaerSparseMat::sp_solve_lower_triangular_in_place`](https://docs.rs/faer/latest/faer/sparse/trait.FaerSparseMat.html#tymethod.sp_solve_lower_triangular_in_place) can be used, or similar methods for when the diagonal is unit and/or the matrix is upper triangular.
+[`faer::sparse::FaerSparseMat::sp_solve_lower_triangular_in_place`](https://docs.rs/faer/latest/faer/sparse/struct.SparseColMat.html#method.sp_solve_lower_triangular_in_place) can be used, or similar methods for when the diagonal is unit and/or the matrix is upper triangular.
 
 ## \\(A\\) is real-symmetric/complex-Hermitian and positive definite
-If \\(A\\) is Hermitian and positive definite, users can use the [Cholesky LLT decomposition](https://docs.rs/faer/latest/faer/sparse/trait.FaerSparseMat.html#tymethod.sp_cholesky).
+If \\(A\\) is Hermitian and positive definite, users can use the [Cholesky LLT decomposition](https://docs.rs/faer/latest/faer/sparse/struct.SparseColMat.html#method.sp_cholesky).
 
 ```rust
 use faer::prelude::*;
@@ -33,7 +33,7 @@ let x = llt.solve(&b);
 ```
 
 ## \\(A\\) is square
-For a square matrix \\(A\\), we can use the [LU decomposition with partial pivoting](https://docs.rs/faer/latest/faer/sparse/trait.FaerSparseMat.html#tymethod.sp_lu).
+For a square matrix \\(A\\), we can use the [LU decomposition with partial pivoting](https://docs.rs/faer/latest/faer/sparse/struct.SparseColMat.html#method.sp_lu).
 
 ```rust
 use faer::prelude::*;
@@ -61,7 +61,7 @@ necessarily exist, in which case we can get a best-effort result by computing
 the least squares solution.
 That is, the solution that minimizes \\(||A x - b||\\).
 
-This can be done using the [QR decomposition](https://docs.rs/faer/latest/faer/sparse/trait.FaerSparseMat.html#tymethod.sp_qr).
+This can be done using the [QR decomposition](https://docs.rs/faer/latest/faer/sparse/struct.SparseColMat.html#method.sp_qr).
 ```rust
 use faer::prelude::*;
 use faer::sparse::FaerSparseMat;
