@@ -2,6 +2,8 @@ The benchmarks were run on an `11th Gen Intel(R) Core(TM) i5-11400 @ 2.60GHz` wi
 
 All computations are done on column major matrices.
 
+The plots are normalized so that the `faer` line is set to `1.0`.
+
 Higher is better on all the plots.
 
 ## f32
