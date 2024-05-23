@@ -6,6 +6,8 @@ The plots are normalized so that the `faer` line is set to `1.0`.
 
 Higher is better on all the plots.
 
+Last updated: 2024-05-23
+
 ## f32
 
 ![Cholesky](./plots/mt_cholesky_f32_plot.png)
