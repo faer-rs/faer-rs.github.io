@@ -2,7 +2,7 @@
 
 ## Creating a matrix
 
-`faer` provides several ways to create dense matrices and matrix views.
+_`faer`_ provides several ways to create dense matrices and matrix views.
 
 The main matrix types are [`Mat`], [`MatRef`] and [`MatMut`],
 which can be thought of as being analogous to `Vec`, `&[_]` and `&mut [_]`.

@@ -1,11 +1,11 @@
 # Solving a Linear System
 
-Several applications require solving a linear system of the form \\(A x = b\\).
-The recommended method can vary depending on the properties of \\(A\\), and the
+several applications require solving a linear system of the form \\(A x = b\\).
+the recommended method can vary depending on the properties of \\(A\\), and the
 desired numerical accuracy.
 
 ## \\(A\\) is triangular
-In this case, one can use \\(A\\) and \\(b\\) directly to find \\(x\\), using the functions
+in this case, one can use \\(A\\) and \\(b\\) directly to find \\(x\\), using the functions
 provided in [`faer::linalg::triangular_solve`](https://docs.rs/faer/latest/faer/linalg/triangular_solve/index.html).
 
 ```rust
@@ -22,12 +22,12 @@ solve_lower_triangular_in_place(a.as_ref(), x.as_mut(), Parallelism::None);
 // x now contains the approximate solution
 ```
 
-In the case where \\(A\\) has a unit diagonal, one can use
+in the case where \\(A\\) has a unit diagonal, one can use
 [`solve_unit_lower_triangular_in_place`](https://docs.rs/faer/latest/faer/linalg/triangular_solve/fn.solve_unit_lower_triangular_in_place.html), which avoids reading the diagonal, and
 instead implicitly uses the value `1.0` as a replacement.
 
 ## \\(A\\) is real-symmetric/complex-Hermitian
-If \\(A\\) is Hermitian and positive definite, users can use the Cholesky LLT
+if \\(A\\) is Hermitian and positive definite, users can use the cholesky llt
 decomposition.
 
 ```rust
@@ -49,8 +49,8 @@ let x = llt.solve(&b);
 
 ### Low level API
 
-Alternatively, a lower-level API could be used to avoid temporary allocations.
-The corresponding code for other decompositions follows the same pattern, so we
+alternatively, a lower-level api could be used to avoid temporary allocations.
+the corresponding code for other decompositions follows the same pattern, so we
 will skip similar examples for the remainder of this page.
 
 ```rust
@@ -118,7 +118,7 @@ let x = lblt.solve(&b);
 ```
 
 ## \\(A\\) is square
-For a square matrix \\(A\\), we can use the LU decomposition with partial pivoting,
+for a square matrix \\(A\\), we can use the lu decomposition with partial pivoting,
 or the full pivoting variant which is slower but can be more accurate when the
 matrix is nearly singular.
 
@@ -142,12 +142,12 @@ let x2 = flu.solve(&b);
 ```
 
 ## \\(A\\) is a tall matrix (least squares solution)
-When the linear system is over-determined, an exact solution may not
+when the linear system is over-determined, an exact solution may not
 necessarily exist, in which case we can get a best-effort result by computing
 the least squares solution.
-That is, the solution that minimizes \\(||A x - b||\\).
+that is, the solution that minimizes \\(||A x - b||\\).
 
-This can be done using the QR decomposition.
+this can be done using the qr decomposition.
 
 ```rust
 use faer::mat;
@@ -165,7 +165,7 @@ let qr = a.qr();
 let x = qr.solve_lstsq(&b);
 ```
 
-## Computing the singular value decomposition
+## computing the singular value decomposition
 ```rust
 use faer::mat;
 use faer::prelude::*;
@@ -184,7 +184,7 @@ let svd = a.thin_svd();
 let svd = a.singular_values();
 ```
 
-## Computing the eigenvalue decomposition
+## computing the eigenvalue decomposition
 ```rust
 use faer::mat;
 use faer::prelude::*;

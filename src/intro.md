@@ -1,27 +1,27 @@
-# Introduction
+# introduction
 
-`faer` is a linear algebra library developed in the Rust programming language.
-It exposes a high level abstraction over a lower level API, similar to the one offered by BLAS/Lapack libraries, modified to better match the capabilities of modern computers, and allows tweaking the inner parameters of the various algorithms.
+_`faer`_ is a linear algebra library developed in the rust programming language.
+it exposes a high level abstraction over a lower level api, similar to the one offered by blas/lapack libraries, modified to better match the capabilities of modern computers, and allows tweaking the inner parameters of the various algorithms.
 
-# Community
+# community
 
-Most of the discussion around the library happens on the [Discord](https://discord.gg/Ak5jDsAFVZ) server. Users who have questions about using the library, performance issues, bug reports, etc, as well as people looking to contribute, are welcome to join the server!
+most of the discussion around the library happens on the [discord](https://discord.gg/Ak5jDsAFVZ) server. users who have questions about using the library, performance issues, bug reports, etc, as well as people looking to contribute, are welcome to join the server!
 
-Bug reports and pull requests can also be posted on the [GitHub](https://www.github.com/sarah-ek/faer-rs) repository.
+bug reports and pull requests can also be posted on the [github](https://www.github.com/sarah-ek/faer-rs) repository.
 
-# Available features
+# available features
 
-  - Matrix creation and basic operation (addition, subtraction, multiplication, etc.),
-  - High performance matrix multiplication,
-  - Triangular solvers,
-  - Cholesky decomposition, LLT, LDLT, and Bunch-Kaufman LBLT,
-  - LU decomposition, with partial or full pivoting,
-  - QR decomposition, with or without column pivoting.
-  - SVD decomposition.
-  - Eigenvalue decomposition for hermitian and non hermitian (real or complex) matrices.
-  - Sparse algorithms.
+  - matrix creation and basic operation (addition, subtraction, multiplication, etc.),
+  - high performance matrix multiplication,
+  - triangular solvers,
+  - cholesky decomposition, llt, ldlt, and bunch-kaufman lblt,
+  - lu decomposition, with partial or full pivoting,
+  - qr decomposition, with or without column pivoting.
+  - svd decomposition.
+  - eigenvalue decomposition for hermitian and non hermitian (real or complex) matrices.
+  - sparse algorithms.
 
-# Future plans
+# future plans
 
   - n-dimensional tensor structures and operations.
-  - GPU acceleration.
+  - gpu acceleration.

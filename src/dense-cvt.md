@@ -1,11 +1,11 @@
-Conversions from/to external library types is provided separately from `faer` itself, in the `faer-ext` crate.
+conversions from/to external library types is provided separately from _`faer`_ itself, in the _`faer-ext`_ crate.
 
-# Note
-Only matrix view types can be converted. Owning matrices can't be converted due to `faer` using a different allocation scheme from `nalgebra` and `ndarray`.
+# note
+only matrix view types can be converted. owning matrices can't be converted due to _`faer`_ using a different allocation scheme from __`nalgebra`__ and _`ndarray`_.
 
-# Converting to/from `nalgebra` matrices
-Conversion from `nalgebra` types is done by enabling the `nalgebra` feature and using the [`IntoFaer`](https://docs.rs/faer/latest/faer/trait.IntoFaer.html) and [`IntoFaerComplex`](https://docs.rs/faer-ext/latest/faer_ext/trait.IntoFaerComplex.html) traits.  
-Conversion to `nalgebra` types is enabled by the same feature and uses the [`IntoNalgebra`](https://docs.rs/faer/latest/faer/trait.IntoNalgebra.html) and [`IntoNalgebraComplex`](https://docs.rs/faer-ext/latest/faer_ext/trait.IntoNalgebraComplex.html) traits.
+# converting to/from _`nalgebra`_ matrices
+conversion from _`nalgebra`_ types is done by enabling the `nalgebra` feature and using the [`IntoFaer`](https://docs.rs/faer/latest/faer/trait.IntoFaer.html) and [`IntoFaerComplex`](https://docs.rs/faer-ext/latest/faer_ext/trait.IntoFaerComplex.html) traits.  
+conversion to _`nalgebra`_ types is enabled by the same feature and uses the [`IntoNalgebra`](https://docs.rs/faer/latest/faer/trait.IntoNalgebra.html) and [`IntoNalgebraComplex`](https://docs.rs/faer-ext/latest/faer_ext/trait.IntoNalgebraComplex.html) traits.
 
 ```rust
 use faer::Mat;
@@ -21,9 +21,9 @@ assert!(I_nalgebra.view_range_mut(.., ..).into_faer() == I_faer);
 assert!(I_faer.as_mut().into_nalgebra() == I_nalgebra);
 ```
 
-# Converting to/from `ndarray` matrices
-Conversion from `ndarray` types is done by enabling the `ndarray` feature and using the [`IntoFaer`](https://docs.rs/faer/latest/faer/trait.IntoFaer.html) and [`IntoFaerComplex`](https://docs.rs/faer-ext/latest/faer_ext/trait.IntoFaerComplex.html) traits.  
-Conversion to `ndarray` types is enabled by the same feature and uses the [`IntoNdarray`](https://docs.rs/faer/latest/faer/trait.IntoNdarray.html) and [`IntoNdarrayComplex`](https://docs.rs/faer-ext/latest/faer_ext/trait.IntoNdarrayComplex.html) traits.
+# converting to/from _`ndarray`_ matrices
+conversion from _`ndarray`_ types is done by enabling the `ndarray` feature and using the [`IntoFaer`](https://docs.rs/faer/latest/faer/trait.IntoFaer.html) and [`IntoFaerComplex`](https://docs.rs/faer-ext/latest/faer_ext/trait.IntoFaerComplex.html) traits.  
+conversion to _`ndarray`_ types is enabled by the same feature and uses the [`IntoNdarray`](https://docs.rs/faer/latest/faer/trait.IntoNdarray.html) and [`IntoNdarrayComplex`](https://docs.rs/faer-ext/latest/faer_ext/trait.IntoNdarrayComplex.html) traits.
 
 ```rust
 use faer::Mat;

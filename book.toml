@@ -6,6 +6,8 @@ src = "src"
 
 [output.html]
 mathjax-support = true
+git-repository-url = "https://github.com/sarah-quinones/faer-rs"
+git-repository-icon = "fa-github"
 
 [output.html.playground]
 runnable = false
